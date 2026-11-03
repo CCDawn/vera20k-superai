@@ -1,0 +1,47 @@
+name: release
+
+# SKELETON — this workflow does not produce working builds yet.
+#
+# The plugin crate has not landed (Phase 1 is still in progress on the fork's
+# superai line). The file exists only to reserve the release pipeline: it runs
+# on workflow_dispatch alone and every build step is an explicit placeholder
+# that fails fast. When the crate lands, update the trigger (paths or tags) and
+# replace every TODO below with real build, packaging and upload steps.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Build (release)
+        run: |
+          # TODO: replace with the real plugin build once the crate lands, e.g.:
+          #   cargo build --release -p vera20k-superai
+          # TODO: add the release feature flags the crate requires, e.g.:
+          #   cargo build --release -p vera20k-superai --features <feature>
+          echo "Placeholder: the plugin crate has not landed yet, so there is nothing to build."
+          exit 1
+
+      - name: Package artifacts
+        run: |
+          # TODO: package the per-platform release asset (binary + licenses) and
+          # decide the artifact layout for the GitHub Release.
+          echo "Placeholder: packaging is not wired up yet."
+          exit 1
+
+      # TODO: upload the packaged artifacts and attach them to a GitHub Release
+      # (softprops/action-gh-release or equivalent) once builds are real.

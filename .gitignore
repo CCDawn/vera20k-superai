@@ -1,0 +1,5 @@
+# Rust build output
+/target
+
+# Cargo.lock is committed on purpose: this plugin ships prebuilt release
+# binaries, so release builds should stay reproducible.
