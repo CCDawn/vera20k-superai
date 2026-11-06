@@ -13,6 +13,12 @@ Until the crate lands, you can play Super AI today by building the fork:
 
 - Clone [CCDawn/vera20k](https://github.com/CCDawn/vera20k) (its default branch is
   `superai/base`) and follow the [quick start in SUPERAI.md](https://github.com/CCDawn/vera20k/blob/superai/base/SUPERAI.md).
+- The same fork's `superai/defense-next` branch adds the **defense persona**: on
+  wave-defense maps the AI auto-detects the map form and co-defends — fort lines on the
+  attack routes, a staffed objective ring, cooperative stances. Screenshots sit on that
+  branch's [README](https://github.com/CCDawn/vera20k/tree/superai/defense-next#defense-ai-showcase-defense-ai-展示)
+  and the play guide (中文) in
+  [docs/defense-ai-install.zh.md](https://github.com/CCDawn/vera20k/blob/superai/defense-next/docs/defense-ai-install.zh.md).
 
 When this repository takes over, it will offer:
 
