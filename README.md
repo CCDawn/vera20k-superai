@@ -6,25 +6,44 @@ virtual player, so determinism and replays stay intact.
 
 ## Status
 
-**The plugin crate is in preparation.** Phase 1 — extracting Super AI out of the engine into a
-plugin crate — is underway on the fork's `superai` line.
+**The plugin crate has landed.** `vera20k-superai` is now a workspace crate on the fork's
+`superai/defense-next` branch: the AI lives in `superai/`, reads the engine through public
+read-only APIs and emits the same command stream a human sends — the engine itself no longer
+knows the AI exists. This repository mirrors that crate (see *Sync* below).
 
-Until the crate lands, you can play Super AI today by building the fork:
+To play today, build the fork — the crate is a plain workspace member, so the usual build
+just works:
 
-- Clone [CCDawn/vera20k](https://github.com/CCDawn/vera20k) (its default branch is
-  `superai/base`) and follow the [quick start in SUPERAI.md](https://github.com/CCDawn/vera20k/blob/superai/base/SUPERAI.md).
-- The same fork's `superai/defense-next` branch adds the **defense persona**: on
-  wave-defense maps the AI auto-detects the map form and co-defends — fort lines on the
-  attack routes, a staffed objective ring, cooperative stances. Screenshots sit on that
-  branch's [README](https://github.com/CCDawn/vera20k/tree/superai/defense-next#defense-ai-showcase-defense-ai-展示)
-  and the play guide (中文) in
-  [docs/defense-ai-install.zh.md](https://github.com/CCDawn/vera20k/blob/superai/defense-next/docs/defense-ai-install.zh.md).
+```sh
+git clone -b superai/defense-next https://github.com/CCDawn/vera20k.git
+cd vera20k
+cargo build --profile fast -p vera20k --bin vera20k
+```
 
-When this repository takes over, it will offer:
+That branch also carries the **defense persona**: on wave-defense maps the AI auto-detects
+the map form and co-defends — fort lines on the attack routes, a staffed objective ring,
+cooperative stances. Screenshots sit on that
+branch's [README](https://github.com/CCDawn/vera20k/tree/superai/defense-next#defense-ai-showcase-defense-ai-展示)
+and the play guide (中文) in
+[docs/defense-ai-install.zh.md](https://github.com/CCDawn/vera20k/blob/superai/defense-next/docs/defense-ai-install.zh.md).
 
-1. **A plugin crate** — add Super AI to your VERA20K build as a dependency.
-2. **Prebuilt releases** — ready-to-run builds for Windows, Linux and macOS on the
-   [releases page](https://github.com/CCDawn/vera20k-superai/releases).
+A standalone clone of this repository alone does **not** build: the crate depends on the
+engine by path (`vera20k-core = { path = "../src" }`), so it compiles inside the fork's
+workspace. Prebuilt releases remain planned for the
+[releases page](https://github.com/CCDawn/vera20k-superai/releases).
+
+### Sync
+
+This repository is a subtree mirror of `superai/` in the fork. After changes land there:
+
+```sh
+git clone -b superai/defense-next https://github.com/CCDawn/vera20k.git
+cd vera20k
+git subtree split -P superai -b superai-crate-split
+git push https://github.com/CCDawn/vera20k-superai.git superai-crate-split:crate-split
+```
+
+…then merge `crate-split` into `main` here (unrelated histories are already recorded).
 
 ## What it is
 
@@ -55,8 +74,8 @@ bench.
 
 ## Roadmap
 
-1. **Extract the plugin crate.** A virtual-player interface on the fork, so Super AI can leave
-   the engine tree.
+1. ~~**Extract the plugin crate.**~~ **Done** — the crate lives in the fork's `superai/`
+   workspace member and is mirrored here.
 2. **This repository takes over releases.** The crate as a dependency, plus prebuilt binaries
    for all platforms, published here.
 3. **Give back upstream.** A generic virtual-player interface offered to
