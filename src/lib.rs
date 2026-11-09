@@ -8680,7 +8680,9 @@ impl SuperAi {
                 }) {
                     continue;
                 }
-                let Some(view) = vera20k_core::sim::tiberium::tiberium_cell_view(
+                // A registry inconsistency (TiberiumImageError) makes the
+                // cell unusable for siting, same as no tiberium there.
+                let Ok(Some(view)) = vera20k_core::sim::tiberium::tiberium_cell_view(
                     grid,
                     overlay_registry,
                     &rules.tiberium_types,
@@ -14612,6 +14614,8 @@ impl SuperAi {
                 footprint: NearbyFootprint::new(3, 3),
                 allow_bridge_cells: true,
                 check_height: false,
+                // Ground placement; the burrow gate is burrowing callers' own.
+                require_burrowable: false,
                 check_occupancy: false,
                 target_cell: None,
                 options: vera20k_core::sim::find_nearby_cell::NearbySearchOptions {
