@@ -22,10 +22,47 @@ cargo build --profile fast -p vera20k --bin vera20k
 
 That branch also carries the **defense persona**: on wave-defense maps the AI auto-detects
 the map form and co-defends — fort lines on the attack routes, a staffed objective ring,
-cooperative stances. Screenshots sit on that
-branch's [README](https://github.com/CCDawn/vera20k/tree/superai/defense-next#defense-ai-showcase-defense-ai-展示)
-and the play guide (中文) in
+cooperative stances. The play guide (中文) lives in
 [docs/defense-ai-install.zh.md](https://github.com/CCDawn/vera20k/blob/superai/defense-next/docs/defense-ai-install.zh.md).
+
+## Showcase（AI 实战截图）
+
+Shots from live matches — defense and open skirmish:
+
+<table>
+  <tr>
+    <td><img src="docs/images/allied-fort-line.png" alt="Allied fort line: prism towers, pillboxes and walls layered in depth" width="100%"></td>
+    <td><img src="docs/images/yuri-corridor-guns.png" alt="Yuri corridor guns: gattling towers and walls climbing the approach" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center">防守·盟军：光棱塔+碉堡+围墙层层设防</td>
+    <td align="center">防守·尤里：走廊炮阵沿进攻路线梯次推进</td>
+  </tr>
+  <tr>
+    <td><img src="docs/images/yuri-tower-ring-snow.png" alt="Yuri tower ring on snow: a walled base cluster with tech online" width="100%"></td>
+    <td><img src="docs/images/allied-base-stand.png" alt="Allied base standing against the incoming armor wave" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center">防守·尤里：雪地图塔环驻守、科技成型</td>
+    <td align="center">防守·盟军：重兵囤防迎击装甲波次</td>
+  </tr>
+  <tr>
+    <td><img src="docs/images/massed-armor-push.png" alt="Massed armor and infantry staged for the push" width="100%"></td>
+    <td><img src="docs/images/yuri-base-superweapons.png" alt="Yuri base at full tech with superweapons charging" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center">对战·集结：装甲洪流与步兵集群待命推进</td>
+    <td align="center">对战·运营：尤里全科技、超武倒计时</td>
+  </tr>
+  <tr>
+    <td><img src="docs/images/fortified-stronghold.png" alt="A fortified stronghold with hundreds of units at scale" width="100%"></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center">对战·规模：要塞化基地，百级单位驻防</td>
+    <td></td>
+  </tr>
+</table>
 
 A standalone clone of this repository alone does **not** build: the crate depends on the
 engine by path (`vera20k-core = { path = "../src" }`), so it compiles inside the fork's
